@@ -1,14 +1,21 @@
-import './assets/main.css'
-
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
-import App from './App.vue'
-import router from './router'
+import App from '@/App.vue'
+import router from '@/router'
+
+import '@unocss/reset/tailwind.css'
+import '@/assets/main.css'
+import 'uno.css'
 
 const app = createApp(App)
 
 app.use(createPinia())
 app.use(router)
+
+// add a meta tag to the head to make sure the naive-ui styles are applied
+const meta = document.createElement('meta')
+meta.name = 'naive-ui-style'
+document.head.appendChild(meta)
 
 app.mount('#app')

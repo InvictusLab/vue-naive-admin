@@ -1,11 +1,12 @@
 import { fileURLToPath, URL } from 'node:url'
 
-import { defineConfig } from 'vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
+import Unocss from 'unocss/vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import vueDevTools from 'vite-plugin-vue-devtools'
+import { defineConfig } from 'vite'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 
 // https://vite.dev/config/
@@ -44,6 +45,7 @@ export default defineConfig({
       dirs: ['src/components'],
       dts: 'src/dts/components.d.ts',
     }),
+    Unocss(),
   ],
   resolve: {
     alias: {
