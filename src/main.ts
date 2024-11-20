@@ -8,10 +8,9 @@ import '@unocss/reset/tailwind.css'
 import '@/assets/main.css'
 import 'uno.css'
 
-console.log(import.meta.env.VITE_APP_BASE)
+console.log(import.meta.env.VITE_APP_BASE_URL)
 
 const app = createApp(App)
-
 app.use(createPinia())
 app.use(router)
 
