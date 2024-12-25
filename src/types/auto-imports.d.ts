@@ -154,6 +154,7 @@ declare global {
   const useCssVar: (typeof import('@vueuse/core'))['useCssVar']
   const useCssVars: (typeof import('vue'))['useCssVars']
   const useCurrentElement: (typeof import('@vueuse/core'))['useCurrentElement']
+  const useCustomCounter: (typeof import('../stores/counter'))['useCustomCounter']
   const useCycleList: (typeof import('@vueuse/core'))['useCycleList']
   const useDark: (typeof import('@vueuse/core'))['useDark']
   const useDateFormat: (typeof import('@vueuse/core'))['useDateFormat']
