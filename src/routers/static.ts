@@ -4,15 +4,15 @@ const staticRoutes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'Home',
-    component: () => import('@/views/HomePage/HomePage.vue'),
+    component: () => import('@/views/homePage/HomePage.vue'),
     meta: {
-      title: 'HomePage',
+      title: 'homePage',
     },
   },
   {
-    path: '/WorkSpace',
+    path: '/workSpace',
     name: 'WorkSpace',
-    component: () => import('@/views/WorkSpace/WorkSpace.vue'),
+    component: () => import('@/views/workSpace/WorkSpace.vue'),
   },
 ]
 
