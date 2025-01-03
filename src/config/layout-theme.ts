@@ -1,6 +1,6 @@
 export interface LayoutTheme {
   title?: string
-  layout?: 'mix' | 'side' | 'top'
+  layout: 'mix' | 'side' | 'top'
   headerHeight: number
 }
 

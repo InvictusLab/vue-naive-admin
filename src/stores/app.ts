@@ -1,13 +1,15 @@
 import { layoutThemeConfig } from '@/config/layout-theme'
 
-export const useAppStore = defineStore('app', () => {
-  const defaultTheme = import.meta.env.DEV
+const useAppStore = defineStore('app', () => {
+  const defaultLayout = import.meta.env.DEV
     ? layoutThemeConfig
     : useLayoutTheme()
 
-  const layout = reactive(unref(defaultTheme))
+  const layout = reactive(unref(defaultLayout))
 
   return {
     layout,
   }
 })
+
+export { useAppStore }
