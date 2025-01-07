@@ -1,14 +1,14 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const appStore = useAppStore()
+const { layout } = storeToRefs(appStore)
+
+import MixLayout from '@/layouts/mixLayout/MixLayout.vue'
+</script>
 
 <template>
-  <div>
-    <h1>Base Layout</h1>
-
-    <router-link to="/">Home</router-link>
-    <router-link to="/workspace">WorkSpace</router-link>
-
-    <router-view></router-view>
-  </div>
+  <MixLayout v-if="layout.layout === 'mix'">
+    <router-view />
+  </MixLayout>
 </template>
 
 <style scoped></style>

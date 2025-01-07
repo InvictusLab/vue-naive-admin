@@ -1,3 +1,3 @@
-import Layout from './baseLayout/BaseLayout.vue'
+import Layout from '@/layouts/baseLayout/BaseLayout.vue'
 
 export { Layout }
