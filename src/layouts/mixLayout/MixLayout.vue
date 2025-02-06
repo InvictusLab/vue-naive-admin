@@ -1,7 +1,17 @@
 <script setup lang="ts">
-const props = withDefaults(defineProps<{ headerHeight?: number }>(), {
-  headerHeight: 48,
-})
+import navLogo from '@/layouts/common/NavLogo.vue'
+import navTitle from '@/layouts/common/NavTitle.vue'
+
+const props = withDefaults(
+  defineProps<{
+    headerHeight?: number
+    logo?: string
+    title?: string
+  }>(),
+  {
+    headerHeight: 48,
+  },
+)
 
 const headerHeight = computed(() => `${props.headerHeight}px`)
 const contentHeight = computed(() => `calc(100vh - ${props.headerHeight}px)`)
@@ -11,9 +21,16 @@ const contentHeight = computed(() => `calc(100vh - ${props.headerHeight}px)`)
   <n-layout class="h-screen">
     <n-layout-header
       inverted
-      class="invictus-mix-layout-header flex items-center px-4"
-      >颐和园路</n-layout-header
+      class="invictus-mix-layout-header flex justify-between items-center px-4"
     >
+      <div class="flex items-center">
+        <navLogo :src="logo" />
+        <navTitle :title="title" />
+      </div>
+      <slot name="headerRight">
+        <div>右侧</div>
+      </slot>
+    </n-layout-header>
     <n-layout has-sider class="invictus-mix-layout-content">
       <n-layout-sider content-style="padding: 24px;"> 海淀桥 </n-layout-sider>
       <n-layout-content content-style="padding: 24px;">
