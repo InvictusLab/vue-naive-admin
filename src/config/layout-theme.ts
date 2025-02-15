@@ -5,6 +5,9 @@ export interface LayoutTheme {
   layout: 'mix' | 'side' | 'top'
   headerHeight: number
   logo?: string
+  siderWidth: number
+  siderCollapsedWidth: number
+  showSiderTrigger: boolean | 'bar' | 'arrow-circle'
 }
 
 export const layoutThemeConfig: LayoutTheme = {
@@ -12,4 +15,7 @@ export const layoutThemeConfig: LayoutTheme = {
   layout: 'mix',
   headerHeight: 48,
   logo,
+  siderWidth: 240,
+  siderCollapsedWidth: 48,
+  showSiderTrigger: 'bar',
 }

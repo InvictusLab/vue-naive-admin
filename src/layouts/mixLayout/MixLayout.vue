@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import navLogo from '@/layouts/common/NavLogo.vue'
-import navTitle from '@/layouts/common/NavTitle.vue'
+import { NavLogo, NavTitle, LayoutContent, LayoutSider } from '@/layouts/common'
 
 const props = withDefaults(
   defineProps<{
     headerHeight?: number
     logo?: string
     title?: string
+    siderWidth?: number
+    siderCollapsedWidth?: number
+    showSiderTrigger?: boolean | 'bar' | 'arrow-circle'
   }>(),
   {
     headerHeight: 48,
@@ -24,18 +26,25 @@ const contentHeight = computed(() => `calc(100vh - ${props.headerHeight}px)`)
       class="invictus-mix-layout-header flex justify-between items-center px-4"
     >
       <div class="flex items-center">
-        <navLogo :src="logo" />
-        <navTitle :title="title" />
+        <NavLogo :src="logo" />
+        <NavTitle :title="title" />
       </div>
       <slot name="headerRight">
         <div>右侧</div>
       </slot>
     </n-layout-header>
     <n-layout has-sider class="invictus-mix-layout-content">
-      <n-layout-sider content-style="padding: 24px;"> 海淀桥 </n-layout-sider>
-      <n-layout-content content-style="padding: 24px;">
+      <LayoutSider
+        :width="siderWidth"
+        :collapsed-width="siderCollapsedWidth"
+        :show-trigger="showSiderTrigger"
+        content-style="padding: 24px;"
+      >
+        海淀桥
+      </LayoutSider>
+      <LayoutContent content-style="padding: 24px;">
         <slot></slot>
-      </n-layout-content>
+      </LayoutContent>
     </n-layout>
   </n-layout>
 </template>

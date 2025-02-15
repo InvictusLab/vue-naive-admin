@@ -5,7 +5,7 @@ import App from '@/App.vue'
 import router from '@/routers'
 
 import '@unocss/reset/tailwind.css'
-import '@/assets/main.css'
+import '@/assets/styles/main.css'
 import 'uno.css'
 
 console.log(import.meta.env.VITE_APP_BASE_URL)
