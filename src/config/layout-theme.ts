@@ -11,8 +11,8 @@ export interface LayoutTheme {
 }
 
 export const layoutThemeConfig: LayoutTheme = {
-  title: 'Invictus Vue Admin',
-  layout: 'mix',
+  title: 'Invictus Admin',
+  layout: 'side',
   headerHeight: 48,
   logo,
   siderWidth: 240,
