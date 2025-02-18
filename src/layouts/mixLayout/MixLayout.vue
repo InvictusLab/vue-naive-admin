@@ -9,11 +9,15 @@ const props = withDefaults(
     siderWidth?: number
     siderCollapsedWidth?: number
     showSiderTrigger?: boolean | 'bar' | 'arrow-circle'
+    collapsed?: boolean
   }>(),
   {
     headerHeight: 48,
+    collapsed: false,
   },
 )
+
+defineEmits(['update:collapsed'])
 
 const headerHeight = computed(() => `${props.headerHeight}px`)
 const contentHeight = computed(() => `calc(100vh - ${props.headerHeight}px)`)
@@ -36,9 +40,10 @@ const contentHeight = computed(() => `calc(100vh - ${props.headerHeight}px)`)
     <n-layout has-sider class="invictus-mix-layout-content">
       <LayoutSider
         :width="siderWidth"
+        :collapsed="collapsed"
         :collapsed-width="siderCollapsedWidth"
         :show-trigger="showSiderTrigger"
-        content-style="padding: 24px;"
+        @update:collapsed="$event => $emit('update:collapsed', $event)"
       >
         海淀桥
       </LayoutSider>

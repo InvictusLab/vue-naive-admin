@@ -9,6 +9,7 @@ import SideLayout from '@/layouts/sideLayout/SideLayout.vue'
 <template>
   <MixLayout
     v-if="layout.layout === 'mix'"
+    v-model:collapsed="layout.collapsed"
     :logo="layout.logo"
     :title="layout.title"
     :show-sider-trigger="layout.showSiderTrigger"
@@ -22,15 +23,16 @@ import SideLayout from '@/layouts/sideLayout/SideLayout.vue'
   </MixLayout>
   <SideLayout
     v-if="layout.layout === 'side'"
+    v-model:collapsed="layout.collapsed"
     :logo="layout.logo"
     :title="layout.title"
     :show-sider-trigger="layout.showSiderTrigger"
     :sider-width="layout.siderWidth"
     :sider-collapsed-width="layout.siderCollapsedWidth"
   >
-    <!--    <template #headerRight>-->
-    <!--      <div>测试右侧插槽</div>-->
-    <!--    </template>-->
+    <template #headerRight>
+      <div>测试右侧插槽</div>
+    </template>
     <router-view />
   </SideLayout>
 </template>

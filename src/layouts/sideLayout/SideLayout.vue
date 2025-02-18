@@ -10,12 +10,16 @@ const props = withDefaults(
     siderCollapsedWidth?: number
     showSiderTrigger?: boolean | 'bar' | 'arrow-circle'
     inverted?: boolean
+    collapsed?: boolean
   }>(),
   {
     headerHeight: 48,
     inverted: false,
+    collapsed: false,
   },
 )
+
+defineEmits(['update:collapsed'])
 
 const headerHeight = computed(() => `${props.headerHeight}px`)
 </script>
@@ -24,21 +28,27 @@ const headerHeight = computed(() => `${props.headerHeight}px`)
   <n-layout has-sider class="h-screen">
     <LayoutSider
       :inverted="inverted"
+      :collapsed="collapsed"
       :width="siderWidth"
       :collapsed-width="siderCollapsedWidth"
       :show-trigger="showSiderTrigger"
-      content-style="padding: 24px;"
+      @update:collapsed="$event => $emit('update:collapsed', $event)"
     >
-      <div class="flex items-center">
-        <NavLogo :src="logo" />
-        <NavTitle :title="title" :size="20" />
+      <div class="flex items-center justify-center mt-24px">
+        <NavLogo :src="logo" :size="30" />
+        <NavTitle v-if="!collapsed" :title="title" :size="22" />
       </div>
     </LayoutSider>
     <n-layout style="--n-color: var(--invictus-admin-layout-content-bg)">
       <n-layout-header
         class="invictus-mix-layout-header flex justify-between items-center px-4"
       >
-        颐和园路
+        <slot name="headerLeft">
+          <div></div>
+        </slot>
+        <slot name="headerRight">
+          <div></div>
+        </slot>
       </n-layout-header>
       <LayoutContent content-style="padding: 24px;">
         <slot></slot>
