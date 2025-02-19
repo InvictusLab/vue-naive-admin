@@ -4,6 +4,7 @@ const { layout } = storeToRefs(appStore)
 
 import MixLayout from '@/layouts/mixLayout/MixLayout.vue'
 import SideLayout from '@/layouts/sideLayout/SideLayout.vue'
+import TopLayout from '@/layouts/topLayout/TopLayout.vue'
 </script>
 
 <template>
@@ -35,6 +36,16 @@ import SideLayout from '@/layouts/sideLayout/SideLayout.vue'
     </template>
     <router-view />
   </SideLayout>
+  <TopLayout
+    v-if="layout.layout === 'top'"
+    :logo="layout.logo"
+    :title="layout.title"
+  >
+    <template #headerRight>
+      <div>测试右侧插槽</div>
+    </template>
+    <router-view />
+  </TopLayout>
 </template>
 
 <style scoped></style>

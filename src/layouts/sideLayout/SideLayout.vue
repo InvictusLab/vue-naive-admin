@@ -1,5 +1,11 @@
 <script setup lang="ts">
-import { NavLogo, NavTitle, LayoutContent, LayoutSider } from '@/layouts/common'
+import {
+  NavLogo,
+  NavTitle,
+  LayoutContent,
+  LayoutSider,
+  LayoutRoot,
+} from '@/layouts/common'
 
 const props = withDefaults(
   defineProps<{
@@ -25,7 +31,7 @@ const headerHeight = computed(() => `${props.headerHeight}px`)
 </script>
 
 <template>
-  <n-layout has-sider class="h-screen">
+  <LayoutRoot has-sider class="h-screen">
     <LayoutSider
       :inverted="inverted"
       :collapsed="collapsed"
@@ -54,7 +60,7 @@ const headerHeight = computed(() => `${props.headerHeight}px`)
         <slot></slot>
       </LayoutContent>
     </n-layout>
-  </n-layout>
+  </LayoutRoot>
 </template>
 
 <style scoped>
