@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { NavLogo, NavTitle, LayoutContent, LayoutRoot } from '@/layouts/common'
+import { NavLogo, LayoutContent, LayoutRoot } from '@/layouts/common'
+import { MenuFoldOutlined } from '@vicons/antd'
 
 const props = withDefaults(
   defineProps<{
@@ -7,13 +8,22 @@ const props = withDefaults(
     logo?: string
     title?: string
     inverted?: boolean
+    visible?: boolean
   }>(),
   {
     headerHeight: 48,
     inverted: false,
+    visible: false,
   },
 )
+
+const emit = defineEmits(['update:visible'])
+
 const headerHeight = computed(() => `${props.headerHeight}px`)
+
+const onShow = () => {
+  emit('update:visible', true)
+}
 </script>
 
 <template>
@@ -24,7 +34,9 @@ const headerHeight = computed(() => `${props.headerHeight}px`)
     >
       <div class="flex items-center">
         <NavLogo :src="logo" />
-        <NavTitle :title="title" />
+        <n-icon @click="onShow" size="26" class="ml-12px">
+          <MenuFoldOutlined @click="() => $emit('update:visible', !visible)" />
+        </n-icon>
       </div>
       <slot name="headerRight">
         <div>右侧</div>
@@ -34,6 +46,16 @@ const headerHeight = computed(() => `${props.headerHeight}px`)
       <slot></slot>
     </LayoutContent>
   </LayoutRoot>
+  <n-drawer
+    :show="visible"
+    :width="240"
+    placement="left"
+    @update:show="value => $emit('update:visible', value)"
+  >
+    <n-drawer-content>
+      <div>drawer content</div>
+    </n-drawer-content>
+  </n-drawer>
 </template>
 
 <style scoped>
