@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import {
+  LayoutContent,
+  LayoutRoot,
+  LayoutSider,
   NavLogo,
   NavTitle,
-  LayoutContent,
-  LayoutSider,
-  LayoutRoot,
 } from '@/layouts/common'
 
 const props = withDefaults(

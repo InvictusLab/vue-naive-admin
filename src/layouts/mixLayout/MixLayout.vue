@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { NavLogo, NavTitle, LayoutContent, LayoutSider } from '@/layouts/common'
+import { LayoutContent, LayoutSider, NavLogo, NavTitle } from '@/layouts/common'
 
 const props = withDefaults(
   defineProps<{

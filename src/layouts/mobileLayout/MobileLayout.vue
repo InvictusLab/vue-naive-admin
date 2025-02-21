@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { NavLogo, LayoutContent, LayoutRoot } from '@/layouts/common'
+import { LayoutContent, LayoutRoot, NavLogo } from '@/layouts/common'
 import { MenuFoldOutlined } from '@vicons/antd'
 
 const props = withDefaults(
