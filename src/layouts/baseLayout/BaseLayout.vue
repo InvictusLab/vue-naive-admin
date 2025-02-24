@@ -8,7 +8,13 @@ import MobileLayout from '@/layouts/mobileLayout/MobileLayout.vue'
 
 const appStore = useAppStore()
 const { layout, visible } = storeToRefs(appStore)
-const { isMobile } = useQueryBreakpoints()
+const { isMobile, isDesktop, isPad } = useQueryBreakpoints()
+
+watchEffect(() => {
+  if (isDesktop.value) appStore.toggleCollapsed(false)
+  else if (isPad.value) appStore.toggleCollapsed(true)
+  if (isMobile.value) appStore.toggleCollapsed(false)
+})
 </script>
 
 <template>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { LayoutContent, LayoutRoot, NavLogo } from '@/layouts/common'
+import { LayoutContent, LayoutRoot, NavLogo, NavTitle } from '@/layouts/common'
 import { MenuFoldOutlined } from '@vicons/antd'
 
 const props = withDefaults(
@@ -7,13 +7,17 @@ const props = withDefaults(
     headerHeight?: number
     logo?: string
     title?: string
-    inverted?: boolean
+    headerInverted?: boolean
+    drawerInverted?: boolean
     visible?: boolean
+    logoVisible?: boolean
   }>(),
   {
     headerHeight: 48,
-    inverted: false,
+    headerInverted: false,
+    drawerInverted: true,
     visible: false,
+    logoVisible: true,
   },
 )
 
@@ -29,10 +33,10 @@ const onShow = () => {
 <template>
   <LayoutRoot class="h-screen">
     <n-layout-header
-      :inverted="inverted"
+      :inverted="headerInverted"
       class="invictus-mix-layout-header flex justify-between items-center px-4"
     >
-      <div class="flex items-center">
+      <div v-if="logoVisible" class="flex items-center">
         <NavLogo :src="logo" />
         <n-icon @click="onShow" size="26" class="ml-12px">
           <MenuFoldOutlined @click="() => $emit('update:visible', !visible)" />
@@ -52,8 +56,16 @@ const onShow = () => {
     placement="left"
     @update:show="value => $emit('update:visible', value)"
   >
-    <n-drawer-content>
-      <div>drawer content</div>
+    <n-drawer-content body-content-style="padding: 0;">
+      <n-layout class="h-100%">
+        <n-layout-header class="h-100%" :inverted="drawerInverted">
+          <div class="flex items-center justify-center py-12px">
+            <NavLogo :src="logo" :size="26" />
+            <NavTitle :title="title" :size="22" />
+          </div>
+          drawer content
+        </n-layout-header>
+      </n-layout>
     </n-drawer-content>
   </n-drawer>
 </template>
