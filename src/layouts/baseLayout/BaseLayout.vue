@@ -5,6 +5,7 @@ import MixLayout from '@/layouts/mixLayout/MixLayout.vue'
 import SideLayout from '@/layouts/sideLayout/SideLayout.vue'
 import TopLayout from '@/layouts/topLayout/TopLayout.vue'
 import MobileLayout from '@/layouts/mobileLayout/MobileLayout.vue'
+import SettingDrawer from '@/layouts/settingDrawer/SettingDrawer.vue'
 
 const appStore = useAppStore()
 const { layout, visible } = storeToRefs(appStore)
@@ -68,6 +69,7 @@ watchEffect(() => {
       <router-view />
     </TopLayout>
   </template>
+  <SettingDrawer />
 </template>
 
 <style scoped></style>
