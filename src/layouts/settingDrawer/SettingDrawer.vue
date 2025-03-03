@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { SettingOutlined, CloseOutlined } from '@vicons/antd'
+import CheckboxLayout from '@/layouts/settingDrawer/CheckboxLayout.vue'
+import CheckboxLayoutContainer from '@/layouts/settingDrawer/CheckboxLayoutContainer.vue'
 
 const props = withDefaults(
   defineProps<{
     floatTop?: number | string
     drawerWidth?: number | string
+    layout?: 'mix' | 'side' | 'top'
   }>(),
   {
     floatTop: 240,
@@ -12,7 +15,29 @@ const props = withDefaults(
   },
 )
 
+defineEmits(['update:layout'])
+
 const show = ref(false)
+
+interface Layout {
+  key: 'side' | 'top' | 'mix'
+  value: string
+}
+
+const layouts = ref<Layout[]>([
+  {
+    key: 'side',
+    value: '侧边布局',
+  },
+  {
+    key: 'top',
+    value: '顶部布局',
+  },
+  {
+    key: 'mix',
+    value: '混合布局',
+  },
+])
 
 const handleClick = (value: boolean) => {
   show.value = value
@@ -45,7 +70,20 @@ const cssVars = computed(() => ({
     </div>
   </teleport>
   <n-drawer v-model:show="show" :width="drawerWidth">
-    <n-drawer-content> drawer content </n-drawer-content>
+    <n-drawer-content>
+      <CheckboxLayoutContainer title="导航模式">
+        <n-space size="large">
+          <template v-for="item in layouts" :key="item.key">
+            <CheckboxLayout
+              :layout="item.key"
+              :title="item.value"
+              :checked="item.key === layout"
+              @click="() => $emit('update:layout', item.key)"
+            />
+          </template>
+        </n-space>
+      </CheckboxLayoutContainer>
+    </n-drawer-content>
     <div
       :style="cssVars"
       class="absolute top-[var(--invictus-admin-float-top)] right-[var(--invictus-admin-drawer-width)]"
