@@ -8,7 +8,7 @@ import MobileLayout from '@/layouts/mobileLayout/MobileLayout.vue'
 import SettingDrawer from '@/layouts/settingDrawer/SettingDrawer.vue'
 
 const appStore = useAppStore()
-const { layout, visible } = storeToRefs(appStore)
+const { layout, visible, layoutList, layoutStyleList } = storeToRefs(appStore)
 const { isMobile, isDesktop, isPad } = useQueryBreakpoints()
 
 watchEffect(() => {
@@ -49,6 +49,7 @@ watchEffect(() => {
       v-model:collapsed="layout.collapsed"
       :logo="layout.logo"
       :title="layout.title"
+      :inverted="layout.layoutStyle === 'inverted'"
       :show-sider-trigger="layout.showSiderTrigger"
       :sider-width="layout.siderWidth"
       :sider-collapsed-width="layout.siderCollapsedWidth"
@@ -62,6 +63,7 @@ watchEffect(() => {
       v-if="layout.layout === 'top'"
       :logo="layout.logo"
       :title="layout.title"
+      :inverted="layout.layoutStyle === 'inverted'"
     >
       <template #headerRight>
         <div>测试右侧插槽</div>
@@ -69,7 +71,12 @@ watchEffect(() => {
       <router-view />
     </TopLayout>
   </template>
-  <SettingDrawer v-model:layout="layout.layout" />
+  <SettingDrawer
+    :layoutList="layoutList"
+    :layoutStyleList="layoutStyleList"
+    v-model:layoutStyle="layout.layoutStyle"
+    v-model:layout="layout.layout"
+  />
 </template>
 
 <style scoped></style>

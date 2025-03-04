@@ -2,12 +2,16 @@
 import { SettingOutlined, CloseOutlined } from '@vicons/antd'
 import CheckboxLayout from '@/layouts/settingDrawer/CheckboxLayout.vue'
 import CheckboxLayoutContainer from '@/layouts/settingDrawer/CheckboxLayoutContainer.vue'
+import type { LayoutType } from '@/config/layout-theme'
 
 const props = withDefaults(
   defineProps<{
     floatTop?: number | string
     drawerWidth?: number | string
     layout?: 'mix' | 'side' | 'top'
+    layoutStyle?: 'inverted' | 'light'
+    layoutList?: LayoutType[]
+    layoutStyleList?: LayoutType[]
   }>(),
   {
     floatTop: 240,
@@ -15,29 +19,9 @@ const props = withDefaults(
   },
 )
 
-defineEmits(['update:layout'])
+defineEmits(['update:layout', 'update:layoutStyle'])
 
 const show = ref(false)
-
-interface Layout {
-  key: 'side' | 'top' | 'mix'
-  value: string
-}
-
-const layouts = ref<Layout[]>([
-  {
-    key: 'side',
-    value: '侧边布局',
-  },
-  {
-    key: 'top',
-    value: '顶部布局',
-  },
-  {
-    key: 'mix',
-    value: '混合布局',
-  },
-])
 
 const handleClick = (value: boolean) => {
   show.value = value
@@ -71,12 +55,25 @@ const cssVars = computed(() => ({
   </teleport>
   <n-drawer v-model:show="show" :width="drawerWidth">
     <n-drawer-content>
-      <CheckboxLayoutContainer title="导航模式">
+      <CheckboxLayoutContainer title="布局风格配置" v-if="layoutStyleList">
         <n-space size="large">
-          <template v-for="item in layouts" :key="item.key">
+          <template v-for="item in layoutStyleList" :key="item.key">
             <CheckboxLayout
               :layout="item.key"
-              :title="item.value"
+              :title="item.title"
+              :inverted="item.inverted"
+              :checked="item.id === layoutStyle"
+              @click="() => $emit('update:layoutStyle', item.id)"
+            />
+          </template>
+        </n-space>
+      </CheckboxLayoutContainer>
+      <CheckboxLayoutContainer title="导航模式" v-if="layoutList">
+        <n-space size="large">
+          <template v-for="item in layoutList" :key="item.key">
+            <CheckboxLayout
+              :layout="item.key"
+              :title="item.title"
               :checked="item.key === layout"
               @click="() => $emit('update:layout', item.key)"
             />

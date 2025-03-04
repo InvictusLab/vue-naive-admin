@@ -3,7 +3,7 @@ import type { CSSProperties } from 'vue'
 
 const props = withDefaults(
   defineProps<{
-    size?: number
+    size?: number | string
     title?: string
   }>(),
   {
