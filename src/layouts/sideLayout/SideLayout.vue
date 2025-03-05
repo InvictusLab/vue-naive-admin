@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {
   LayoutContent,
+  LayoutHeader,
   LayoutRoot,
   LayoutSider,
   NavLogo,
@@ -46,7 +47,7 @@ const headerHeight = computed(() => `${props.headerHeight}px`)
       </div>
     </LayoutSider>
     <n-layout style="--n-color: var(--invictus-admin-layout-content-bg)">
-      <n-layout-header
+      <LayoutHeader
         class="invictus-mix-layout-header flex justify-between items-center px-4"
       >
         <slot name="headerLeft">
@@ -55,7 +56,7 @@ const headerHeight = computed(() => `${props.headerHeight}px`)
         <slot name="headerRight">
           <div></div>
         </slot>
-      </n-layout-header>
+      </LayoutHeader>
       <LayoutContent content-style="padding: 24px;">
         <slot></slot>
       </LayoutContent>

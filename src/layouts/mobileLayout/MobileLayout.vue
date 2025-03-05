@@ -1,5 +1,11 @@
 <script setup lang="ts">
-import { LayoutContent, LayoutRoot, NavLogo, NavTitle } from '@/layouts/common'
+import {
+  LayoutContent,
+  LayoutHeader,
+  LayoutRoot,
+  NavLogo,
+  NavTitle,
+} from '@/layouts/common'
 import { MenuFoldOutlined } from '@vicons/antd'
 
 const props = withDefaults(
@@ -32,7 +38,7 @@ const onShow = () => {
 
 <template>
   <LayoutRoot class="h-screen">
-    <n-layout-header
+    <LayoutHeader
       :inverted="headerInverted"
       class="invictus-mix-layout-header flex justify-between items-center px-4"
     >
@@ -45,7 +51,7 @@ const onShow = () => {
       <slot name="headerRight">
         <div>右侧</div>
       </slot>
-    </n-layout-header>
+    </LayoutHeader>
     <LayoutContent content-style="padding: 24px;">
       <slot></slot>
     </LayoutContent>

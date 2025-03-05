@@ -1,0 +1,7 @@
+.invictus-admin-layout-header {
+  box-shadow: var(--invictus-admin-layout-shadow-header);
+}
+
+.invictus-admin-layout-sider {
+  box-shadow: var(--invictus-admin-layout-shadow-sider);
+}

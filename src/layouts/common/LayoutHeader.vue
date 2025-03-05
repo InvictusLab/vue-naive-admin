@@ -1,9 +1,9 @@
 <script setup lang="ts"></script>
 
 <template>
-  <n-layout-sider class="invictus-admin-layout-sider" collapse-mode="width">
+  <n-layout-header class="invictus-admin-layout-header">
     <slot></slot>
-  </n-layout-sider>
+  </n-layout-header>
 </template>
 
 <style scoped></style>

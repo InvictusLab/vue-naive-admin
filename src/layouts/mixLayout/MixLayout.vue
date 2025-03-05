@@ -1,5 +1,11 @@
 <script setup lang="ts">
-import { LayoutContent, LayoutSider, NavLogo, NavTitle } from '@/layouts/common'
+import {
+  LayoutContent,
+  LayoutHeader,
+  LayoutSider,
+  NavLogo,
+  NavTitle,
+} from '@/layouts/common'
 
 const props = withDefaults(
   defineProps<{
@@ -25,7 +31,7 @@ const contentHeight = computed(() => `calc(100vh - ${props.headerHeight}px)`)
 
 <template>
   <n-layout class="h-screen">
-    <n-layout-header
+    <LayoutHeader
       inverted
       class="invictus-mix-layout-header flex justify-between items-center px-4"
     >
@@ -36,7 +42,7 @@ const contentHeight = computed(() => `calc(100vh - ${props.headerHeight}px)`)
       <slot name="headerRight">
         <div>右侧</div>
       </slot>
-    </n-layout-header>
+    </LayoutHeader>
     <n-layout has-sider class="invictus-mix-layout-content">
       <LayoutSider
         :width="siderWidth"

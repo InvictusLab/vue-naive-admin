@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { SettingOutlined, CloseOutlined } from '@vicons/antd'
+import { CloseOutlined, SettingOutlined } from '@vicons/antd'
 import CheckboxLayout from '@/layouts/settingDrawer/CheckboxLayout.vue'
 import CheckboxLayoutContainer from '@/layouts/settingDrawer/CheckboxLayoutContainer.vue'
 import type { LayoutType } from '@/config/layout-theme'
@@ -62,6 +62,7 @@ const cssVars = computed(() => ({
               :layout="item.key"
               :title="item.title"
               :inverted="item.inverted"
+              :dark="item.dark"
               :checked="item.id === layoutStyle"
               @click="() => $emit('update:layoutStyle', item.id)"
             />

@@ -1,9 +1,9 @@
 import {
+  type LayoutTheme,
   layoutThemeConfig,
   type LayoutType,
-  type LayoutTheme,
 } from '@/config/layout-theme'
-import { darkTheme } from 'naive-ui'
+import { darkTheme } from '@/config/app-theme'
 
 const useAppStore = defineStore('app', () => {
   const defaultLayout = import.meta.env.DEV
@@ -48,6 +48,17 @@ const useAppStore = defineStore('app', () => {
     ]
   })
 
+  watch(
+    () => layout.layoutStyle,
+    value => {
+      if (value === 'dark') {
+        toggleDark(true)
+      } else {
+        toggleDark(false)
+      }
+    },
+  )
+
   const layoutStyleList = computed<LayoutType[]>(() => {
     const list: LayoutType[] = [
       {
@@ -68,6 +79,12 @@ const useAppStore = defineStore('app', () => {
         updateLayoutStyle('light')
       }
     }
+    list.push({
+      id: 'dark',
+      key: 'side',
+      title: '暗色风格',
+      dark: true,
+    })
     return list
   })
 
