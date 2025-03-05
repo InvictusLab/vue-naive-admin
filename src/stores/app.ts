@@ -3,6 +3,7 @@ import {
   type LayoutType,
   type LayoutTheme,
 } from '@/config/layout-theme'
+import { darkTheme } from 'naive-ui'
 
 const useAppStore = defineStore('app', () => {
   const defaultLayout = import.meta.env.DEV
@@ -68,10 +69,18 @@ const useAppStore = defineStore('app', () => {
     return list
   })
 
+  const layoutTheme = computed(() => {
+    if (layout.layoutStyle === 'dark') {
+      return darkTheme
+    }
+    return undefined
+  })
+
   return {
     layout,
     layoutList,
     layoutStyleList,
+    layoutTheme,
     visible,
     toggleVisible,
     toggleCollapsed,

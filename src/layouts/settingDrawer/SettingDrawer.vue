@@ -9,7 +9,7 @@ const props = withDefaults(
     floatTop?: number | string
     drawerWidth?: number | string
     layout?: 'mix' | 'side' | 'top'
-    layoutStyle?: 'inverted' | 'light'
+    layoutStyle?: 'inverted' | 'light' | 'dark'
     layoutList?: LayoutType[]
     layoutStyleList?: LayoutType[]
   }>(),

@@ -2,3 +2,8 @@ html {
   --invictus-admin-layout-content-bg: #f0f2f5;
   --invictus-admin-layout-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.18);
 }
+
+html.dark {
+  --invictus-admin-layout-content-bg: #2a2c2c;
+  --invictus-admin-layout-box-shadow: 0 1px 3px 0 rgba(13, 13, 13, 0.18);
+}

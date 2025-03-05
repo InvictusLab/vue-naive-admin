@@ -10,7 +10,7 @@ export interface LayoutType {
 export interface LayoutTheme {
   title?: string
   layout: 'mix' | 'side' | 'top'
-  layoutStyle?: 'inverted' | 'light'
+  layoutStyle?: 'inverted' | 'light' | 'dark'
   headerHeight: number
   logo?: string
   siderWidth: number
