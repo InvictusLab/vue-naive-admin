@@ -64,7 +64,9 @@ const useAppStore = defineStore('app', () => {
         title: '反转色风格',
       })
     } else {
-      updateLayoutStyle('light')
+      if (layout.layoutStyle !== 'dark') {
+        updateLayoutStyle('light')
+      }
     }
     return list
   })
