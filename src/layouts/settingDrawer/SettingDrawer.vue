@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { CloseOutlined, SettingOutlined } from '@vicons/antd'
 import CheckboxLayout from '@/layouts/settingDrawer/CheckboxLayout.vue'
+import CheckboxTheme from '@/layouts/settingDrawer/CheckboxTheme.vue'
 import CheckboxLayoutContainer from '@/layouts/settingDrawer/CheckboxLayoutContainer.vue'
 import type { LayoutType } from '@/config/layout-theme'
+import type { ThemeType } from '@/config/theme'
 
 const props = withDefaults(
   defineProps<{
@@ -12,6 +14,8 @@ const props = withDefaults(
     layoutStyle?: 'inverted' | 'light' | 'dark'
     layoutList?: LayoutType[]
     layoutStyleList?: LayoutType[]
+    themeList?: ThemeType[]
+    theme?: string
   }>(),
   {
     floatTop: 240,
@@ -19,7 +23,11 @@ const props = withDefaults(
   },
 )
 
-defineEmits(['update:layout', 'update:layoutStyle'])
+const emit = defineEmits([
+  'update:layout',
+  'update:layoutStyle',
+  'update:theme',
+])
 
 const show = ref(false)
 
@@ -31,6 +39,10 @@ const cssVars = computed(() => ({
   '--invictus-admin-float-top': `${props.floatTop}px`,
   '--invictus-admin-drawer-width': `${props.drawerWidth}px`,
 }))
+
+const onThemeChange = (value: string) => {
+  emit('update:theme', value)
+}
 </script>
 
 <template>
@@ -69,6 +81,18 @@ const cssVars = computed(() => ({
           </template>
         </n-space>
       </CheckboxLayoutContainer>
+      <CheckboxLayoutContainer title="主题色配置" v-if="themeList">
+        <n-space>
+          <CheckboxTheme
+            v-for="item in themeList"
+            :key="item.key"
+            :color="item.color"
+            :checked="item.key === theme"
+            @click="onThemeChange(item.key)"
+          ></CheckboxTheme>
+        </n-space>
+      </CheckboxLayoutContainer>
+      <n-divider></n-divider>
       <CheckboxLayoutContainer title="导航模式" v-if="layoutList">
         <n-space size="large">
           <template v-for="item in layoutList" :key="item.key">

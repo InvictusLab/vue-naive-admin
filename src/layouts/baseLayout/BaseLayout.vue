@@ -8,7 +8,8 @@ import MobileLayout from '@/layouts/mobileLayout/MobileLayout.vue'
 import SettingDrawer from '@/layouts/settingDrawer/SettingDrawer.vue'
 
 const appStore = useAppStore()
-const { layout, visible, layoutList, layoutStyleList } = storeToRefs(appStore)
+const { layout, visible, layoutList, layoutStyleList, themeList } =
+  storeToRefs(appStore)
 const { isMobile, isDesktop, isPad } = useQueryBreakpoints()
 
 watchEffect(() => {
@@ -74,8 +75,10 @@ watchEffect(() => {
   <SettingDrawer
     :layoutList="layoutList"
     :layoutStyleList="layoutStyleList"
+    :themeList="themeList"
     v-model:layoutStyle="layout.layoutStyle"
     v-model:layout="layout.layout"
+    v-model:theme="layout.theme"
   />
 </template>
 

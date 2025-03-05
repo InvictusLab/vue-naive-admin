@@ -1,22 +1,22 @@
-<script setup lang="ts">
-import type { LayoutTheme } from '@/config/layout-theme'
-
+<script lang="ts" setup>
+import { colors } from '@/config/theme'
 const appStore = useAppStore()
-const onSwitch = (theme: LayoutTheme['layoutStyle']) => {
-  if (theme === 'dark') {
-    document.documentElement.className = 'dark'
-  } else {
-    document.documentElement.removeAttribute('class')
-  }
-  appStore.updateLayoutStyle(theme)
+const onSwitchTheme = (value: string) => {
+  appStore.updateTheme(value)
 }
 </script>
 
 <template>
   <div>
     <n-space>
-      <n-button @click="onSwitch('light')">浅色模式</n-button>
-      <n-button @click="onSwitch('dark')">深色模式</n-button>
+      <n-button
+        v-for="(color, key) in colors"
+        :key="key"
+        type="primary"
+        @click="onSwitchTheme(key)"
+      >
+        {{ key }}
+      </n-button>
     </n-space>
   </div>
 </template>

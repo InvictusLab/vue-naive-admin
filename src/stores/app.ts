@@ -4,6 +4,7 @@ import {
   type LayoutType,
 } from '@/config/layout-theme'
 import { darkTheme } from '@/config/app-theme'
+import { colors, darkColors, type ThemeType } from '@/config/theme'
 
 const useAppStore = defineStore('app', () => {
   const defaultLayout = import.meta.env.DEV
@@ -95,11 +96,36 @@ const useAppStore = defineStore('app', () => {
     return undefined
   })
 
+  const overridesTheme = computed(() => {
+    if (isDark.value) return darkColors[layout.theme]
+    else return colors[layout.theme]
+  })
+
+  const updateTheme = (value: string) => {
+    layout.theme = value
+  }
+
+  const themeList = computed<ThemeType[]>(() => {
+    const list = []
+    const myColors = isDark.value ? darkColors : colors
+    for (const key in myColors) {
+      const value = myColors[key]
+      list.push({
+        color: value?.common?.primaryColor as string,
+        key,
+      })
+    }
+    return list
+  })
+
   return {
     layout,
     layoutList,
     layoutStyleList,
     layoutTheme,
+    overridesTheme,
+    updateTheme,
+    themeList,
     visible,
     toggleVisible,
     toggleCollapsed,
