@@ -7,6 +7,7 @@
     "node": "^20.19.0 || >=22.12.0"
   },
   "scripts": {
+    "prepare": "husky",
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
@@ -18,6 +19,11 @@
     "lint:eslint": "eslint . --fix",
     "lint": "run-s lint:*",
     "format": "prettier --write src/"
+  },
+  "lint-staged": {
+    "*.{vue,ts,tsx}": "vue-tsc --build --force",
+    "*.{ts,mts,tsx,vue}": "eslint --fix",
+    "src/**/*": "prettier --write"
   },
   "dependencies": {
     "pinia": "^3.0.3",
@@ -41,8 +47,10 @@
     "eslint-plugin-oxlint": "~1.8.0",
     "eslint-plugin-playwright": "^2.2.0",
     "eslint-plugin-vue": "~10.3.0",
+    "husky": "^9.1.7",
     "jiti": "^2.4.2",
     "jsdom": "^26.1.0",
+    "lint-staged": "^16.2.3",
     "npm-run-all2": "^8.0.4",
     "oxlint": "~1.8.0",
     "prettier": "3.6.2",
