@@ -1,3 +1,6 @@
+import '@unocss/reset/tailwind.css'
+import 'uno.css'
+
 import './assets/main.css'
 
 import { createApp } from 'vue'
@@ -5,6 +8,13 @@ import { createPinia } from 'pinia'
 
 import App from './App.vue'
 import router from './router'
+
+// Tailwind's reset rules will override Naive-UI's rules, so we need to set Naive-UI to have the highest priority.
+const meta = document.createElement('meta')
+meta.name = 'naive-ui-style'
+document.head.appendChild(meta)
+
+console.log(import.meta.env.VITE_APP_HOST)
 
 const app = createApp(App)
 
