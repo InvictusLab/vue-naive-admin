@@ -5,6 +5,7 @@ import './assets/main.css'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+import chalk from 'chalk'
 
 import App from './App.vue'
 import router from './router'
@@ -14,9 +15,9 @@ const meta = document.createElement('meta')
 meta.name = 'naive-ui-style'
 document.head.appendChild(meta)
 
-console.log(`%cBASE URL: %c${import.meta.env.VITE_APP_HOST}`, 'color: cyan', 'color: yellow')
-console.log(`%cMODE: %c${import.meta.env.MODE}`, 'color: cyan', 'color: yellow')
-console.log(`%cSSR: %c${import.meta.env.SSR}`, 'color: cyan', 'color: yellow')
+console.log(chalk.cyan.bold('BASE URL: ') + chalk.yellow(`${import.meta.env.VITE_APP_HOST}`))
+console.log(chalk.cyan.bold('MODE: ') + chalk.yellow(`${import.meta.env.MODE}`))
+console.log(chalk.cyan.bold('SSR: ') + chalk.yellow(`${import.meta.env.SSR}`))
 
 const app = createApp(App)
 
