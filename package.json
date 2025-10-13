@@ -18,12 +18,13 @@
     "lint:oxlint": "oxlint . --fix -D correctness --ignore-path .gitignore",
     "lint:eslint": "eslint . --fix",
     "lint": "run-s lint:*",
-    "format": "prettier --write src/"
+    "format": "prettier --write ."
   },
   "lint-staged": {
-    "*.{vue,ts,tsx}": "vue-tsc --build --force",
-    "*.{ts,mts,tsx,vue}": "eslint --fix",
-    "src/**/*": "prettier --write"
+    "*": [
+      "prettier --write",
+      "eslint --fix"
+    ]
   },
   "dependencies": {
     "@vueuse/core": "^13.9.0",

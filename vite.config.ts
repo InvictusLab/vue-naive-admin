@@ -24,19 +24,11 @@ export default defineConfig({
         '@vueuse/core',
         'pinia',
         {
-          'naive-ui': [
-            'useDialog',
-            'useMessage',
-            'useNotification',
-            'useLoadingBar',
-          ],
+          'naive-ui': ['useDialog', 'useMessage', 'useNotification', 'useLoadingBar'],
         },
       ],
       dts: 'types/auto-imports.d.ts',
-      dirs: [
-        'src/stores',
-        'src/composables',
-      ],
+      dirs: ['src/stores', 'src/composables'],
       vueTemplate: true,
     }),
     Components({
@@ -46,7 +38,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
 })
