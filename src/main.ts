@@ -1,7 +1,7 @@
 import '@unocss/reset/tailwind.css'
 import 'uno.css'
 
-import './assets/main.css'
+import '@/assets/styles/app.css'
 
 import chalk from 'chalk'
 
