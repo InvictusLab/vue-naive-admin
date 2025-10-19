@@ -12,7 +12,7 @@ export interface LayoutTheme {
 
 export const layoutThemeConfig: LayoutTheme = {
   title: 'Invictus Admin',
-  layout: 'mix',
+  layout: 'side',
   headerHeight: 48,
   logo: logo,
   siderWidth: 240,
